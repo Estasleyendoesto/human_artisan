@@ -64,8 +64,18 @@ class FigureLoader(bpy.types.Operator):
         with bpy.data.libraries.load(path) as (data_from, data_to):
             data_to.objects = [obj for obj in data_from.objects if obj in objects_to_append]
 
+        D = bpy.data
+        C = bpy.context
+
+        coll_name = 'Workspace'
+        coll = C.scene.collection.children.get(coll_name)
+        if coll is None:
+            coll = D.collections.new(coll_name)
+            coll.color_tag = 'COLOR_05'
+            C.scene.collection.children.link(coll)
+
         for obj in data_to.objects:
-            bpy.context.collection.objects.link(obj)
+            coll.objects.link(obj)
 
         return {'FINISHED'}
 
@@ -74,7 +84,12 @@ class SceneLoader(bpy.types.Operator):
     bl_label = 'Load Scene'
 
     def execute(self, context):
-        print('Scene loaded')
+        import os
+        path = os.path.dirname(os.path.abspath(__file__)) + r'\base.blend'
+
+        to_append = ['Artisan']
+        with bpy.data.libraries.load(path) as (data_from, data_to):
+            data_to.scenes = [scene for scene in data_from.scenes if scene in to_append]
 
         return {'FINISHED'}
 

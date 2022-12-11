@@ -23,8 +23,6 @@ def unregister():
     for c in classes:
         bpy.utils.unregister_class(c)
 
-    del bpy.types.WindowManager.isLoaded
-
 if __name__ == '__main__':
     register()
     
