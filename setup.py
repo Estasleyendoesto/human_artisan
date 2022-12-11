@@ -73,6 +73,9 @@ class FigureLoader(bpy.types.Operator):
 
         for obj in data_to.objects:
             coll.objects.link(obj)
+            bpy.ops.object.select_all(action='DESELECT')
+            C.view_layer.objects.active = obj
+            C.view_layer.objects.active.select_set(True)
 
         bpy.data.libraries.remove(bpy.data.libraries.get('artisan.blend'))
 

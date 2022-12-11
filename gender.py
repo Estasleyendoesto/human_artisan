@@ -1,4 +1,5 @@
 import bpy
+import re
 
 # - - - - - - - - - - - - - - - - - - - - - - - -
 # Panels
@@ -14,11 +15,28 @@ class UI_gender_panel(bpy.types.Panel):
         layout = self.layout
 
         row = layout.row()
-        row.operator("object.male_shape_loader") # Male
-        row.operator("object.female_shape_loader") # Female
+        row.operator("object.male_shape_loader")
+        row.operator("object.female_shape_loader")
 
         row = layout.row()
-        row.operator("object.reset_gender_shape") # Reset
+        row.operator("object.reset_gender_shape")
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - -
+# Functions
+# - - - - - - - - - - - - - - - - - - - - - - - -
+def get_shape_key(name):
+    active = bpy.context.view_layer.objects.active
+    _type = active.type
+    if _type == 'MESH':
+        isG9F = re.search('Genesis9', active.data.name)
+        if isG9F:
+            return active.data.shape_keys.key_blocks.get(name)
+
+def reset_shapes(ls):
+    for sk in ls:
+        sk = get_shape_key(sk)
+        if sk: sk.value = 0
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - -
@@ -29,7 +47,9 @@ class MaleShapeLoader(bpy.types.Operator):
     bl_label = 'Male'
 
     def execute(self, context):
-        print('Male Shape loaded')
+        reset_shapes(['Base Masculine', 'Base Feminine'])
+        shape_key = get_shape_key('Base Masculine')
+        if shape_key: shape_key.value = 1
 
         return {'FINISHED'}
 
@@ -38,7 +58,9 @@ class FemaleShapeLoader(bpy.types.Operator):
     bl_label = 'Female'
 
     def execute(self, context):
-        print('Female Shape loaded')
+        reset_shapes(['Base Masculine', 'Base Feminine'])
+        shape_key = get_shape_key('Base Feminine')
+        if shape_key: shape_key.value = 1
 
         return {'FINISHED'}
 
@@ -47,8 +69,8 @@ class ResetGenderShape(bpy.types.Operator):
     bl_label = 'Reset'
 
     def execute(self, context):
-        print('Reset gender shape')
-
+        reset_shapes(['Base Masculine', 'Base Feminine'])
+        
         return {'FINISHED'}
 
 
