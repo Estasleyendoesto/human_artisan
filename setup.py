@@ -7,7 +7,7 @@ class UI_setup_panel(bpy.types.Panel):
     bl_idname = 'MAIN_PT_setup_panel'
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = 'Human Artisan'
+    bl_category = 'Artisan'
     bl_label = 'Setup (0.1)'
 
     def draw(self, context):

@@ -1,5 +1,5 @@
 bl_info = {
-    "name": "Human Artisan",
+    "name": "Artisan",
     "author": "Estasleyendoesto",
     "version": (0, 1),
     "blender": (3, 3, 1),
@@ -11,19 +11,18 @@ bl_info = {
 }
 
 import bpy
+from . import setup, gender, age, pose
 
-from . import setup, gender, age
-classes = setup.cls + gender.cls
+def app():
+    return setup.cls + gender.cls + age.cls + pose.cls
 
 def register():
-    for c in classes:
+    for c in app():
         bpy.utils.register_class(c)
 
 def unregister():
-    for c in classes:
+    for c in app():
         bpy.utils.unregister_class(c)
 
 if __name__ == '__main__':
     register()
-    
-print("Human Artisan loaded")
