@@ -45,6 +45,7 @@ class Proportion_torso_panel(bpy.types.Panel):
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
     bl_label = 'Torso'
+    bl_options = {'HIDE_HEADER'}
     
     def draw(self, context):
         layout = self.layout
@@ -68,6 +69,7 @@ class Proportion_arms_panel(bpy.types.Panel):
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
     bl_label = 'Arms'
+    bl_options = {'HIDE_HEADER'}
     
     def draw(self, context):
         layout = self.layout
@@ -87,6 +89,7 @@ class Proportion_legs_panel(bpy.types.Panel):
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
     bl_label = 'Legs'
+    bl_options = {'HIDE_HEADER'}
     
     def draw(self, context):
         layout = self.layout

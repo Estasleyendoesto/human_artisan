@@ -11,3 +11,6 @@ def load(object):
 
     if 'mass_morphs' not in object:
         object['mass_morphs'] = filter_morphs('Mass', object)
+
+    if 'taper_morphs' not in object:
+        object['taper_morphs'] = filter_morphs('Taper', object)
