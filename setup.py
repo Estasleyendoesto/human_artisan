@@ -94,7 +94,7 @@ class SceneLoader(bpy.types.Operator):
         D = bpy.data
         C = bpy.context
         with bpy.data.libraries.load(path) as (data_from, data_to):
-            data_to.collections = [c for c in data_from.collections if c != 'GENESIS 9 FIGURE']
+            data_to.collections = [c for c in data_from.collections if c != 'GENESIS 9 BASE']
 
         for c in data_to.collections:
             C.scene.collection.children.link(c)

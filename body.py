@@ -17,14 +17,27 @@ class UI_body_panel(bpy.types.Panel):
         return figure_active()
 
     def draw(self, context):
-        layout = self.layout        
-        figure = figure_active()
-        for name in figure['body_morphs']:
-            row = layout.row(align = True)
-            row.prop(context.object, '["%s"]' % name, text=name.replace('Body ', ''), slider=True)
+        pass
 
-        row = layout.row()
-        row.operator('object.reset_body_morph')
+class Body_head_panel(bpy.types.Panel):
+    bl_idname = 'SUB_PT_body_panel'
+    bl_parent_id = 'MAIN_PT_proportion_panel'
+    bl_space_type = 'VIEW_3D'
+    bl_region_type = 'UI'
+    bl_label = 'Body'
+    bl_options = {'HIDE_HEADER'}
+    
+    def draw(self, context):
+        layout = self.layout
+        morphs = (
+            'Proportion Height', 
+            'Proportion Larger', 
+            'Proportion Smaller', 
+            'Proportion Smaller Body Only',
+        )
+        for name in morphs:
+            row = layout.row(align = True)
+            row.prop(context.object, '["%s"]' % name, text=name.replace('Proportion ', ''), slider=True)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - -
@@ -47,4 +60,3 @@ cls = (
     UI_body_panel,
     ResetBodyMorph,
 )
- 
