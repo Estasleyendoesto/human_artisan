@@ -29,14 +29,23 @@ def reset_morphs(ls):
     for morph in ls:
         update_morph(morph, 0.0)
 
-def filter_morphs(str, object=None):
+def filter_morphs(str, object=None, exclude=[]):
     morphs = []
     if not object:
         object = figure_active()
     if object:
         for i in object.keys():
-            prop = re.search(str, i)
-            if prop:
-                morphs.append(i)
-
+            # Exclusion
+            times = 0
+            for w in exclude:
+                exc = re.search(w, i)
+                if exc:
+                    times += 1
+            if times:
+                continue
+            # No coincidences
+            else:
+                prop = re.search(str, i)
+                if prop:
+                    morphs.append(i)  
     return morphs

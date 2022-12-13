@@ -18,11 +18,6 @@ class UI_proportion_panel(bpy.types.Panel):
 
     def draw(self, context):
         pass
-        # layout = self.layout
-        # figure = figure_active()
-        # for name in figure['proportion_morphs']:
-        #     row = layout.row(align = True)
-        #     row.prop(context.object, '["%s"]' % name, text=name.replace('Proportion ', ''), slider=True)
 
 class Proportion_body_panel(bpy.types.Panel):
     bl_idname = 'SUB_PT_body_panel'
@@ -80,7 +75,7 @@ class Proportion_arms_panel(bpy.types.Panel):
             'Proportion Arms Length',
             'Proportion Hand Size',
             'Proportion Palm Size',
-            'Proportion Fingers Size',
+            'Proportion Fingers Length',
         )
         for name in morphs:
             row = layout.row(align = True)

@@ -11,10 +11,10 @@ bl_info = {
 }
 
 import bpy
-from . import setup, gender, age, pose, proportions
+from . import setup, gender, age, pose, proportions, body, mass
 
 def app():
-    return setup.cls + gender.cls + age.cls + proportions.cls + pose.cls
+    return setup.cls + gender.cls + age.cls + body.cls + proportions.cls + mass.cls + pose.cls
 
 def register():
     for c in app():
