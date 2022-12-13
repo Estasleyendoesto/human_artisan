@@ -1,4 +1,5 @@
 import bpy
+from . import data
 
 # - - - - - - - - - - - - - - - - - - - - - - - -
 # Panels
@@ -76,6 +77,7 @@ class FigureLoader(bpy.types.Operator):
             bpy.ops.object.select_all(action='DESELECT')
             C.view_layer.objects.active = obj
             C.view_layer.objects.active.select_set(True)
+            data.load(obj)
 
         bpy.data.libraries.remove(bpy.data.libraries.get('artisan.blend'))
 
