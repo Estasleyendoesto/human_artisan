@@ -129,7 +129,7 @@ class RenderSettingsLoader(bpy.types.Operator):
         # Color Management
         C.scene.view_settings.view_transform    = 'Filmic'
         C.scene.view_settings.look              = 'Medium Low Contrast'
-        C.scene.view_settings.exposure          = 0.2
+        C.scene.view_settings.exposure          = 0.5
         C.scene.view_settings.gamma             = 0.7
         C.scene.view_settings.use_curve_mapping = True
 
