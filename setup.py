@@ -111,12 +111,12 @@ class RenderSettingsLoader(bpy.types.Operator):
         C = bpy.context
 
         # Cycles
-        C.scene.cycles.preview_samples        = 512
+        C.scene.cycles.preview_samples        = 256
         C.scene.cycles.use_preview_denoising  = True
         C.scene.cycles.preview_denoiser       = 'OPTIX'
         C.scene.cycles.preview_denoising_input_passes = 'RGB_ALBEDO_NORMAL'
-        C.scene.cycles.samples                = 720
-        C.scene.cycles.use_denoising          = True
+        C.scene.cycles.samples                = 560
+        C.scene.cycles.use_denoising          = False
         C.scene.cycles.denoiser               = 'OPTIX'
         C.scene.cycles.denoising_input_passes = 'RGB_ALBEDO_NORMAL'
         # Cycles - Light Paths
@@ -129,8 +129,8 @@ class RenderSettingsLoader(bpy.types.Operator):
         # Color Management
         C.scene.view_settings.view_transform    = 'Filmic'
         C.scene.view_settings.look              = 'Medium Low Contrast'
-        C.scene.view_settings.exposure          = 0.4
-        C.scene.view_settings.gamma             = 0.8   
+        C.scene.view_settings.exposure          = 0.2
+        C.scene.view_settings.gamma             = 0.7
         C.scene.view_settings.use_curve_mapping = True
 
         return {'FINISHED'}
